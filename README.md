@@ -123,3 +123,28 @@ curl -X POST "http://localhost:8000/detect/batch" \
 ## Documentation interactive
 
 Swagger UI disponible sur [http://localhost:8000/docs](http://localhost:8000/docs)
+
+## Tests
+
+Le fichier `tests/test_api.py` contient 4 tests automatisés :
+
+| Test | Description |
+|------|-------------|
+| `test_health` | Vérifie que l'endpoint `/health` répond 200 |
+| `test_health_model_loaded` | Vérifie que le modèle est bien chargé au démarrage |
+| `test_detect_with_image` | Envoie une image synthétique (640×640 rouge) à `/detect` et vérifie la structure de la réponse |
+| `test_detect_no_file` | Vérifie que `/detect` sans fichier retourne une erreur 422 |
+
+### Lancer les tests
+
+**Dans le container (après build) :**
+
+```bash
+podman run --rm yolo-serving-api python -m pytest tests/test_api.py -v
+```
+
+**Sans rebuild, en montant le dossier local :**
+
+```bash
+podman run --rm -v $(pwd)/tests:/app/tests yolo-serving-api python -m pytest tests/test_api.py -v
+```
