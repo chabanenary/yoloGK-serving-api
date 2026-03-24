@@ -89,6 +89,11 @@ curl -X POST "http://localhost:8000/detect" \
   -F "file=@image.jpg" \
   -F "confidence=0.5"
 ```
+ ```bash
+ curl -X POST "127.0.0.1:8000/detect" \ 
+  -F "file=@image.jpeg" \
+  -F "confidence=0.5"
+```
 
 Réponse :
 
