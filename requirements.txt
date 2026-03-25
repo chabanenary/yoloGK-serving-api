@@ -2,6 +2,7 @@
 fastapi==0.115.0
 uvicorn==0.30.0
 onnxruntime==1.19.0
+# onnxruntime-gpu==1.19.0  # décommenter pour GPU NVIDIA (remplacer la ligne au-dessus)
 pillow==10.4.0
 python-multipart==0.0.9
 pydantic==2.9.0

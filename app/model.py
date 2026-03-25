@@ -8,7 +8,13 @@ CLASS_NAMES = ["adult", "child", "creditcard", "id", "nude"]
 
 class YOLOInference:
     def __init__(self, model_path: str):
+        # --- Mode CPU (natif) ---
         self.session = ort.InferenceSession(model_path)
+        # --- Mode GPU NVIDIA (décommenter pour production avec CUDA) ---
+        # self.session = ort.InferenceSession(
+        #     model_path,
+        #     providers=["CUDAExecutionProvider", "CPUExecutionProvider"]
+        # )
         self.input_name = self.session.get_inputs()[0].name
         self.input_shape = self.session.get_inputs()[0].shape  # ex: [1, 3, 640, 640]
         
